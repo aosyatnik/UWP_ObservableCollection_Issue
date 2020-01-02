@@ -1,0 +1,30 @@
+﻿<Page
+    x:Class="UWP_ObservableCollection.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWP_ObservableCollection"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Loaded="Page_Loaded">
+
+    <StackPanel>
+        <StackPanel Orientation="Vertical">
+            <TextBlock>Items as List</TextBlock>
+            <local:MyItemsControl ItemsSource="{Binding ItemsAsList}"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical">
+            <TextBlock>Items as ObservableCollection</TextBlock>
+            <local:MyItemsControl ItemsSource="{Binding ItemsAsObservableCollection}"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical">
+            <TextBlock>Items recreated list</TextBlock>
+            <local:MyItemsControl ItemsSource="{Binding ItemsRecreatedList}"/>
+        </StackPanel>
+
+        <Button Click="Button_Click">Add new item</Button>
+    </StackPanel>
+</Page>
