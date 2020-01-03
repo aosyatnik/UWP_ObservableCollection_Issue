@@ -98,3 +98,23 @@ namespace UWP_ObservableCollection
 
 # Solution
 Here I'll write the solution. I hope, that community will help me to find it out.
+
+Answer:
+1. List doesn't implement `INotifyCollectionChanged` that's why it's not updated.
+2. `values.ToList()` creates new collection, that is disconnected from `MainViewModel`. To fix it you should write getter like this:
+
+```csharp
+public static readonly DependencyProperty ItemsSourceProperty =
+           DependencyProperty.Register(
+               "ItemsSource",
+               typeof(IEnumerable<BaseViewModel>),
+               typeof(MyItemsControl),
+               new PropertyMetadata(null, ItemsSourcePropertyChanged)
+           );
+
+        public IEnumerable<BaseViewModel> ItemsSource
+        {
+            get { return (IEnumerable<BaseViewModel>)GetValue(ItemsSourceProperty); }
+            set { SetValue(ItemsSourceProperty, value); }
+        }
+```
